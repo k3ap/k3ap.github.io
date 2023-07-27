@@ -20,3 +20,13 @@ h2 {
     width: 50%;
     padding: 10px;
 }
+
+.ugankar-box {
+    margin-top: 20vh;
+    margin-bottom: 5vh;
+    text-align: center;
+}
+
+#ugankar-input {
+    margin-bottom: 2vh;
+}

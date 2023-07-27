@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Ugankar</title>
+        <meta charset="utf8">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <script>
+         let alphabet = "abcčdefghijklmnopqrsštuvwxyzž ,.;:!?ABCČDEFGHIJKLMNOPQRSŠTUVWYZŽ0123456789()/_?";
+
+         function charAdd(char, val, mult) {
+             var offset = alphabet.indexOf(val);
+             var code = (alphabet.indexOf(char) + mult*offset + alphabet.length) % alphabet.length;
+             return alphabet[code];
+         }
+
+         function encrypt(text, key) {
+             var newString = "";
+             for (var i = 0; i < text.length; i++) {
+                 newString += charAdd(text[i], key[i % key.length], 1);
+             }
+             return newString;
+         }
+
+         function decrypt(text, key) {
+             var newString = "";
+             for (var i = 0; i < text.length; i++) {
+                 newString += charAdd(text[i], key[i % key.length], -1);
+             }
+             return newString;
+         }
+        </script>
+
+        <script>
+
+         var secrets = [
+             "ušot:srFošByu;",
+             "y,ownišCGž!.l,mn:NoČxžrnwB,ČtnunrCHyt;qCy,ownw:CRvHyr,q;dBx;:Cmr:Fzogr;CvžHkr;cCvČ:okwfrpvHyrCt;iHBD;;gtm!,ČynesiAHxgCpiwžuj?C ixCHvlCpn:FowmilCsPŽšxjnsdBwE;4tiovH;jipšdPAo;;qmmPsx;vcžpžswmn;CmBH:uimi:wš hmcCnžHučqmw:!zšxlpi:!o qnln?P_jfvk;dP.žhxšwvH,F;šcšsP!sC",
+             "?lnvDd:,_r  nt!owUx:fsoUyšweEiNmHuDsCČpmp!vH:!mzyHD!zeGxKmžfAHNxqrCGqNx.šOlynvužsDAs,h,šWlšycšrEileobzQ/muTnzU686c)5S8q:_zvbERoqŽOqŽcDUDžqryUtor!wnUewmrHIxwzj?i0",
+             "IprtšnKC/z wiPxAg;vUwvsoBsEČKgu, šL.iGšEnyp,sKDLTg;dPBrsC :CDq ?syšvAvnIzwu !iPvzAm :n.lnn?PYApmvUvsČaw:!iBtnw!G" 
+         ];
+
+         function klikni() {
+             var key = document.getElementById('ugankar-input').value.toLowerCase();
+             for (var i = 0; i < key.length; i++) {
+                 if (alphabet.indexOf(key[i]) == -1) {
+                     alert("nedovoljen znak: " + key[i]);
+                     return;
+                 }
+             }
+
+             for (var i = 0; i < secrets.length; i++) {
+                 var decrypted = decrypt(secrets[i], key);
+                 if (decrypted.startsWith("ugankar ")) {
+                     document.getElementById('ugankar-resitev').innerHTML =
+                     decrypted.substring(8);
+                 }
+             }
+         }
+        </script>
+        <div class="ugankar-box">
+            <input type="text" id="ugankar-input" placeholder="Napiši rešitev ...">
+            <br>
+            <button type="button" onclick="klikni()">Razkrij</button>
+        </div>
+        <hr>
+        <div class="ugankar-box">
+            <p id="ugankar-resitev"></p>
+        </div>
+    </body>
+</html>
