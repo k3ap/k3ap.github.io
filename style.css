@@ -1,5 +1,5 @@
 html {
-    background-color: #eeeeee;
+    background-color: #f6f6f6;
 }
 
 .razdelek {
@@ -13,12 +13,21 @@ html {
 h3 {
     font-weight: bold;
     margin-left: 2vw;
+    border-bottom: 1px solid black;
 }
 
 h2 {
     margin: auto;
     width: 50%;
     padding: 10px;
+}
+
+ul {
+    list-style-type: square;
+}
+
+li {
+    margin-top: 5px;
 }
 
 .ugankar-box {
